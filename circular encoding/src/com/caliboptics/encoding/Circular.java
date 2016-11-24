@@ -52,9 +52,12 @@ public class Circular {
 		}
 		
 		System.out.println(bits + "位可以做出" + encodings.size()+"个不同编码");
+		System.out.println( encodings.size()+" encodings can be made with " +bits + " bits");
 		System.out.println("是否输出编码结果？Y/N");
+		System.out.println("output encoding result? Y/N");
 		Scanner scan = new Scanner(System.in);
 		String x = scan.nextLine();
+		//scan.close();
 		if(x.equals("Y") || x.equals("y")){
 			for(String s:encodings){
 				System.out.println(s);
@@ -65,14 +68,21 @@ public class Circular {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Scanner scan = new Scanner(System.in);
 		while(true){
 			System.out.println("输入编码位数：");
-			Scanner scan = new Scanner(System.in);
+			System.out.println("input number of bits used:");
+			
 			int x = scan.nextInt();
+			if(x<=0){
+				break;
+			}
 			Circular cir = new Circular();
 		
 			cir.encode(x);
+			
 		}
+		scan.close();
 	}
 
 }
