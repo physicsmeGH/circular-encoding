@@ -36,7 +36,7 @@ public class Circular {
 			rawEncodings = newSet;
 		}
 		
-		System.out.println(rawEncodings.size());
+		//System.out.println(rawEncodings.size());
 		for(String code: rawEncodings){
 			String dup = new String(code);
 			for(i = 0;i<bits-1;i++){
