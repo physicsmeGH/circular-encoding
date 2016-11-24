@@ -52,6 +52,15 @@ public class Circular {
 		}
 		
 		System.out.println(bits + "位可以做出" + encodings.size()+"个不同编码");
+		System.out.println("是否输出编码结果？Y/N");
+		Scanner scan = new Scanner(System.in);
+		String x = scan.nextLine();
+		if(x.equals("Y") || x.equals("y")){
+			for(String s:encodings){
+				System.out.println(s);
+			}
+			System.out.println(" ");
+		}
 	}
 
 	public static void main(String[] args) {
