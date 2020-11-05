@@ -10,6 +10,16 @@ public class Circular {
 		encodings = new HashSet<String>();
 	}
 	
+	public static int encodingToBase10(String encoding) {
+		int return_val = 0;
+		int powOf2 = 1;
+		for(int i = encoding.length()-1; i>=0; i--) {
+			return_val += powOf2 * Character.getNumericValue(encoding.charAt(i));
+			powOf2 *= 2;
+		}
+		return return_val;
+	}
+	
 	private Set<String> appendToSet(Set<String> set, char c){
 		Set<String> output = new HashSet<String>();
 		for(String s:set){
@@ -39,15 +49,23 @@ public class Circular {
 		//System.out.println(rawEncodings.size());
 		for(String code: rawEncodings){
 			String dup = new String(code);
-			for(i = 0;i<bits-1;i++){
+			String min = new String(code);
+			int firstOneIndex = -1;
+			for(i = 0;i<bits;i++){
+				
 				dup = leftShiftOneBit(dup);
+				int oneIndex = dup.indexOf('1');
+				if(oneIndex >= firstOneIndex) {
+					firstOneIndex = oneIndex;
+					min = new String(dup);
+				}
 				if(encodings.contains(dup)){
 					break;
 				}
 				
 			}
-			if(i ==bits-1){
-				encodings.add(code);
+			if(i ==bits){
+				encodings.add(min);
 			}
 		}
 		
@@ -60,7 +78,13 @@ public class Circular {
 		//scan.close();
 		if(x.equals("Y") || x.equals("y")){
 			for(String s:encodings){
-				System.out.println(s);
+				System.out.print(encodingToBase10(s));
+				System.out.print(",");
+				for(int index = 0; index <s.length(); index++) {
+					System.out.print(s.charAt(index));
+					System.out.print(",");
+				}
+				System.out.print("\n");
 			}
 			System.out.println(" ");
 		}
