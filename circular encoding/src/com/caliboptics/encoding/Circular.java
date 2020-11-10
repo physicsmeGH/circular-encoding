@@ -68,6 +68,20 @@ public class Circular {
 				encodings.add(min);
 			}
 		}
+		List<String> encodingsList = new ArrayList<String>(encodings);
+		Collections.sort(encodingsList, new Comparator<String>() {
+			public int compare(String s1, String s2) {
+				if(encodingToBase10(s1) > encodingToBase10(s2)) {
+					return 1;
+				}
+				else if(encodingToBase10(s1) < encodingToBase10(s2)) {
+					return -1;
+				}
+				else {
+					return 0;
+				}
+			}
+		});
 		
 		System.out.println(bits + "位可以做出" + encodings.size()+"个不同编码");
 		System.out.println( encodings.size()+" encodings can be made with " +bits + " bits");
@@ -77,7 +91,7 @@ public class Circular {
 		String x = scan.nextLine();
 		//scan.close();
 		if(x.equals("Y") || x.equals("y")){
-			for(String s:encodings){
+			for(String s:encodingsList){
 				System.out.print(encodingToBase10(s));
 				System.out.print(",");
 				for(int index = 0; index <s.length(); index++) {
